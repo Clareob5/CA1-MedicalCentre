@@ -51,7 +51,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @else
+                        @elseif
                           <li class="nav-item">
                             <a href="{{ route('admin.doctors.index') }}" class="nav-link">Doctors</a>
                           </li>

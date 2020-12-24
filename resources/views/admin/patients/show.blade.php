@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
-                  Name: {{ $doctor->user->name }}
+                  Name: {{ $patient->user->name }}
                 </div>
 
                 <div class="card-body">
@@ -14,29 +14,33 @@
                         <tbody>
                             <tr>
                               <td>Name</td>
-                              <td>{{ $doctor->user->name }}</td>
+                              <td>{{ $patient->user->name }}</td>
                             </tr>
                             <tr>
                               <td>Address</td>
-                              <td>{{ $doctor->user->address }}</td>
+                              <td>{{ $patient->user->address }}</td>
                             </tr>
                             <tr>
                               <td>Phone</td>
-                              <td>{{  $doctor->user->phone }}</td>
+                              <td>{{  $patient->user->phone }}</td>
                             </tr>
                             <tr>
                               <td>Email</td>
-                              <td>{{  $doctor->user->email }}</td>
+                              <td>{{  $patient->user->email }}</td>
                             </tr>
                             <tr>
-                              <td>Date Started</td>
-                              <td>{{ $doctor->date_started }}</td>
+                              <td>Insurance Company</td>
+                              <td>{{ $patient->insurance_company}}</td>
+                            </tr>
+                            <tr>
+                              <td>Policy Number</td>
+                              <td>{{ $patient->policy_num }}</td>
                             </tr>
                         </tbody>
                       </table>
-                    <a href="{{ route('admin.doctors.index')}}" class="btn">Back</a>
-                    <a href="{{ route('admin.doctors.edit', $doctor->id)}}" class="btn btn-secondary">Edit</a>
-                    <form style="display:inline-block" method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}">
+                    <a href="{{ route('admin.patients.index')}}" class="btn">Back</a>
+                    <a href="{{ route('admin.patients.edit', $patient->id)}}" class="btn btn-secondary">Edit</a>
+                    <form style="display:inline-block" method="POST" action="{{ route('admin.patients.destroy', $patient->id) }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="submit" class="form-control btn btn-danger">Delete</button>

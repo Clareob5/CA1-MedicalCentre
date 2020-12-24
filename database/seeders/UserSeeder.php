@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Hash;
 use App\Models\User;
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Role;
 
 class UserSeeder extends Seeder
@@ -46,6 +47,23 @@ class UserSeeder extends Seeder
       $doctor->user_id = $user->id;
       $doctor->save();
 
+      $user = new User();
+      $user->name = 'Naim Woods';
+      $user->address = 'Ballymore Bridge';
+      $user->phone = '0871223457';
+      $user->email = 'naim@gmail.com';
+      $user->password = Hash::make('secret');
+      $user->save();
+      $user->roles()->attach($role_patient);
+
+      $patient = new Patient();
+      $patient->insurance_company = true;
+      $patient->policy_num = '235463';
+      $patient->user_id = $user->id;
+      $patient->save();
+
+
+
       for($i = 1; $i <= 10; $i++){
         $user = User::factory()->hasDoctor()->create();
         $user->roles()->attach($role_doctor);
@@ -72,14 +90,6 @@ class UserSeeder extends Seeder
       // $doctor->user_id = $user->id;
       // $doctor->save();
 
-      // $user = new User();
-      // $user->name = 'Dr. Naim';
-      // $user->address = 'Ballymore Bridge';
-      // $user->phone = '0871223457';
-      // $user->email = 'naim@medcenter.com';
-      // $user->password = Hash::make('secret');
-      // $user->save();
-      // $user->roles()->attach($role_user);
 
       // $patient = new User();
       // $patient->name = 'Joe Dempsey';

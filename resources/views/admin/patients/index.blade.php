@@ -9,33 +9,33 @@
 
             <div class="card">
                 <div class="card-header">
-                  Doctors
-                  <a href="{{ route('admin.doctors.create')}}" class="btn btn-primary float-right">Add</a>
+                  Patients
+                  <a href="{{ route('admin.patients.create')}}" class="btn btn-primary float-right">Add</a>
                 </div>
 
                 <div class="card-body">
-                    @if (count($doctors) === 0)
-                      <p>There are no Doctors</p>
+                    @if (count($patients) === 0)
+                      <p>There are no Patients</p>
                     @else
-                      <table id="table-doctors" class="table table-hover">
+                      <table id="table-patients" class="table table-hover">
                         <thead>
                           <th>Name</th>
                           <th>Address</th>
                           <th>Phone</th>
                           <th>Email</th>
-                          <th>Date Started</th>
+                          <th>Policy Number</th>
                         <tbody>
-                          @foreach ($doctors as $doctor)
-                            <tr data-id="{{ $doctor->id }}">
-                              <td>{{ $doctor->user->name }}</td>
-                              <td>{{ $doctor->user->address }}</td>
-                              <td>{{ $doctor->user->phone }}</td>
-                              <td>{{ $doctor->user->email }}</td>
-                              <td>{{ $doctor->date_started }}</td>
+                          @foreach ($patients as $patient)
+                            <tr data-id="{{ $patient->id }}">
+                              <td>{{ $patient->user->name }}</td>
+                              <td>{{ $patient->user->address }}</td>
+                              <td>{{ $patient->user->phone }}</td>
+                              <td>{{ $patient->user->email }}</td>
+                              <td>{{ $patient->policy_num }}</td>
                               <td>
-                                <a href="{{ route('admin.doctors.show', $doctor->id )}}" class="btn btn-primary">View</a>
-                                <a href="{{ route('admin.doctors.edit', $doctor->id )}}" class="btn btn-warning">Edit</a>
-                                <form style="display:inline-block" method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}">
+                                <a href="{{ route('admin.patients.show', $patient->id )}}" class="btn btn-primary">View</a>
+                                <a href="{{ route('admin.patients.edit', $patient->id )}}" class="btn btn-warning">Edit</a>
+                                <form style="display:inline-block" method="POST" action="{{ route('admin.patients.destroy', $patient->id) }}">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="form-control btn btn-danger">Delete</button>
