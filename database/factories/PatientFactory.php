@@ -23,8 +23,9 @@ class PatientFactory extends Factory
     public function definition()
     {
         return [
+            'has_insurance' => true,
+            'insurance_company' => $this->faker->company,
             'policy_num' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
-            'insurance_company' => true,
             'user_id' => User::factory()
         ];
     }

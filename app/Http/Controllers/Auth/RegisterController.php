@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Customer;
+use App\Models\Doctor;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,6 +53,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'min:11'.'max:15'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -80,10 +82,10 @@ class RegisterController extends Controller
       $user->password = Hash::make($data['password']);
       $user->save();
 
-      $user->roles()->attach(Role::where('name','user')->first());
+      $user->roles()->attach(Role::where('name','doctor')->first());
 
       $doctor = new Doctor();
-      $doctor->date_started = '07-06-2015';
+      $doctor->date_started = '2015-06-15';
       $doctor->user_id = $user->id;
       $doctor->save();
 

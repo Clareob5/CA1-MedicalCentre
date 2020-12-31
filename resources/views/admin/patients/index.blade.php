@@ -23,6 +23,7 @@
                           <th>Address</th>
                           <th>Phone</th>
                           <th>Email</th>
+                          <th>Insurance Company</th>
                           <th>Policy Number</th>
                         <tbody>
                           @foreach ($patients as $patient)
@@ -31,6 +32,7 @@
                               <td>{{ $patient->user->address }}</td>
                               <td>{{ $patient->user->phone }}</td>
                               <td>{{ $patient->user->email }}</td>
+                              <td>{{ $patient->insurance_company }}</td>
                               <td>{{ $patient->policy_num }}</td>
                               <td>
                                 <a href="{{ route('admin.patients.show', $patient->id )}}" class="btn btn-primary">View</a>

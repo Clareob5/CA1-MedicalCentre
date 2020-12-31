@@ -39,6 +39,11 @@
                     <input type="text" class="form-control" name="email" id="email" value="{{ old('email', $patient->user->email) }}" />
                 </div>
                 <div class="form-group">
+                    <label for="has_insurance">Check box if you have insurance</label>
+                    <input type="hidden" name="has_insurance" value="0"/>
+                    <input type="checkbox" class="form-control checkbox" name="has_insurance" id="has_insurance" value="1" {{ old('has_insurance', $patient->has_insurance) ? 'checked="checked"' : '' , }} />
+                </div>
+                <div class="form-group">
                     <label for="insurance_company">Insurance Company</label>
                     <input type="text" class="form-control" name="insurance_company" id="insurance_company" value="{{ old('insurance_company', $patient->insurance_company) }}" />
                 </div>

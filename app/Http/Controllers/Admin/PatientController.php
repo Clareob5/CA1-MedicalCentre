@@ -50,8 +50,9 @@ class PatientController extends Controller
       'address' => 'required|max:191',
       'phone' => 'required|max:11',
       'email' => 'required|email',
-      'policy_num' => 'min:1|max:15|nullable',
-      'insurance_company' => 'boolean'
+      'has_insurance' => 'boolean',
+      'insurance_company' => 'nullable|max:191',
+      'policy_num' => 'min:1|max:15|nullable'
     ]);
     $user = new User();
     $user->name = $request->input('name');
@@ -62,6 +63,7 @@ class PatientController extends Controller
     $user->save();
 
     $patient = new Patient();
+    $patient->has_insurance = $request->input('has_insurance');
     $patient->insurance_company = $request->input('insurance_company');
     $patient->policy_num = $request->input('policy_num');
     $patient->user_id = $user->id;
@@ -114,8 +116,9 @@ class PatientController extends Controller
       'address' => 'required|max:191',
       'phone' => 'required|max:11',
       'email' => 'required|email',
-      'insurance_company' => 'required',
-      'policy_num' => 'min:1|max:15',
+      'has_insurance' => 'boolean',
+      'insurance_company' => 'nullable|max:191',
+      'policy_num' => 'nullable|max:9',
       ]);
 
     $patient = Patient::findOrFail($id);
@@ -123,6 +126,7 @@ class PatientController extends Controller
     $patient->user->address = $request->input('address');
     $patient->user->phone = $request->input('phone');
     $patient->user->email = $request->input('email');
+    $patient->has_insurance = $request->input('has_insurance');
     $patient->insurance_company = $request->input('insurance_company');
     $patient->policy_num = $request->input('policy_num');
     $patient->save();
