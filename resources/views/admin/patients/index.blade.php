@@ -32,7 +32,7 @@
                               <td>{{ $patient->user->address }}</td>
                               <td>{{ $patient->user->phone }}</td>
                               <td>{{ $patient->user->email }}</td>
-                              <td>{{ $patient->insurance_company }}</td>
+                              <td>{{ $patient->med_insurance->insurance_company }}</td>
                               <td>{{ $patient->policy_num }}</td>
                               <td>
                                 <a href="{{ route('admin.patients.show', $patient->id )}}" class="btn btn-primary">View</a>

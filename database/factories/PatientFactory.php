@@ -24,9 +24,9 @@ class PatientFactory extends Factory
     {
         return [
             'has_insurance' => true,
-            'insurance_company' => $this->faker->company,
             'policy_num' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
-            'user_id' => User::factory()
+            'user_id' => User::factory(),
+            'med_insurance_id' => 1
         ];
     }
 }

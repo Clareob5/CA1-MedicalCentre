@@ -30,7 +30,7 @@
                             </tr>
                             <tr>
                               <td>Insurance Company</td>
-                              <td>{{ $patient->insurance_company}}</td>
+                              <td>{{ $patient->med_insurance->insurance_company}}</td>
                             </tr>
                             <tr>
                               <td>Policy Number</td>
@@ -47,6 +47,42 @@
                     </form>
                 </div>
             </div>
+            <div class="card-header">
+              Visits
+              <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a>
+            </div>
+            <div class="card-body">
+              @if (count($patient->visits) == 0)
+              <p>There are no visits for this patient.</p>
+            @else
+            <table class="table">
+                <thead>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Doctor</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    @foreach ($patient->visits as $visit)
+                    <tr>
+                        <th>{{ $visit->date }}</th>
+                        <th>{{ $visit->time }}</th>
+                        <th>{{ $visit->doctor->user->name }}</th>
+                        <th>
+                            <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-primary">View</a>
+                            <a href="{{ route('admin.visits.edit', $visit->id )}}" class="btn btn-warning">Edit</a>
+                            <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $patient->id, 'rid' => $visit->id]) }}">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="form-control btn btn-danger">Cancel</a>
+                            </form>
+                        </th>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            @endif
+          </div>
         </div>
     </div>
 </div>

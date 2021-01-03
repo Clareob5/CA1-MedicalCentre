@@ -45,7 +45,11 @@
                 </div>
                 <div class="form-group">
                     <label for="insurance_company">Insurance Company</label>
-                    <input type="text" class="form-control" name="insurance_company" id="insurance_company" value="{{ old('insurance_company', $patient->insurance_company) }}" />
+                    <select name='med_insurance_id'>
+                      @foreach ($med_insurances as $med_insurance)
+                        <option value="{{ $med_insurance->id }}" {{ (old('med_insurance_id') == $med_insurance->id) ? "selected" : "" }}>{{ $med_insurance->insurance_company }}</option>
+                      @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="policy_num">Policy Number</label>

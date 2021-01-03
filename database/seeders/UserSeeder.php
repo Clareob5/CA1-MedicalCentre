@@ -57,9 +57,10 @@ class UserSeeder extends Seeder
       $user->roles()->attach($role_patient);
 
       $patient = new Patient();
-      $patient->insurance_company = true;
+      $patient->has_insurance = true;
       $patient->policy_num = '235463';
       $patient->user_id = $user->id;
+      $patient->med_insurance_id = 1;
       $patient->save();
 
 

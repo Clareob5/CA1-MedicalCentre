@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use App\Models\Doctor;
 use App\Models\User;
+use App\Models\MedInsurance;
 use Hash;
 
 class PatientController extends Controller
@@ -24,7 +26,7 @@ class PatientController extends Controller
   {
     $patients = Patient::all();
     return view('admin.patients.index', [
-      'patients' => $patients
+      'patients' => $patients,
     ]);
   }
 
@@ -36,10 +38,10 @@ class PatientController extends Controller
    public function create()
    {
        $patients = Patient::all();
-       $users = User::all();
+       $med_insurances = MedInsurance::all();
        return view('admin.patients.create', [
          'patients' => $patients,
-         'users' => $users
+         'med_insurances' => $med_insurances
        ]);
    }
 
@@ -51,7 +53,7 @@ class PatientController extends Controller
       'phone' => 'required|max:11',
       'email' => 'required|email',
       'has_insurance' => 'boolean',
-      'insurance_company' => 'nullable|max:191',
+      'med_insurance_id' => 'nullable',
       'policy_num' => 'min:1|max:15|nullable'
     ]);
     $user = new User();
@@ -64,9 +66,9 @@ class PatientController extends Controller
 
     $patient = new Patient();
     $patient->has_insurance = $request->input('has_insurance');
-    $patient->insurance_company = $request->input('insurance_company');
     $patient->policy_num = $request->input('policy_num');
     $patient->user_id = $user->id;
+    $patient->med_insurance_id = $request->input('med_insurance_id');
     $patient->save();
 
     return redirect()->route('admin.patients.index');
@@ -81,9 +83,10 @@ class PatientController extends Controller
   public function show($id)
   {
       $patient = Patient::findOrFail($id);
-
+      $doctor = Doctor::all();
       return view('admin.patients.show', [
-        'patient' => $patient
+        'patient' => $patient,
+        'doctor' => $doctor
       ]);
   }
 
@@ -96,9 +99,10 @@ class PatientController extends Controller
   public function edit($id)
   {
     $patient = Patient::findOrFail($id);
-
+    $med_insurances = MedInsurance::all();
     return view('admin.patients.edit', [
-      'patient' => $patient
+      'patient' => $patient,
+      'med_insurances' => $med_insurances
     ]);
   }
 
@@ -117,7 +121,7 @@ class PatientController extends Controller
       'phone' => 'required|max:11',
       'email' => 'required|email',
       'has_insurance' => 'boolean',
-      'insurance_company' => 'nullable|max:191',
+      'med_insurance_id' => 'nullable',
       'policy_num' => 'nullable|max:9',
       ]);
 
@@ -127,7 +131,7 @@ class PatientController extends Controller
     $patient->user->phone = $request->input('phone');
     $patient->user->email = $request->input('email');
     $patient->has_insurance = $request->input('has_insurance');
-    $patient->insurance_company = $request->input('insurance_company');
+    $patient->med_insurance_id = $request->input('med_insurance_id');
     $patient->policy_num = $request->input('policy_num');
     $patient->save();
 

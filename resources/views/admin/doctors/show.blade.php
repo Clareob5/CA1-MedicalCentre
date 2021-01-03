@@ -42,6 +42,42 @@
                         <button type="submit" class="form-control btn btn-danger">Delete</button>
                     </form>
                 </div>
+                <div class="card-header">
+                  Visits
+                  <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a>
+                </div>
+                <div class="card-body">
+                  @if (count($doctor->visits) == 0)
+                  <p>There are no visits for this patient.</p>
+                @else
+                <table class="table">
+                    <thead>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Patient</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($doctor->visits as $visit)
+                        <tr>
+                            <th>{{ $visit->date }}</th>
+                            <th>{{ $visit->time }}</th>
+                            <th>{{ $visit->patient->user->name }}</th>
+                            <th>
+                                <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-primary">View</a>
+                                <a href="{{ route('admin.visits.edit', $visit->id )}}" class="btn btn-warning">Edit</a>
+                                <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $patient->id, 'rid' => $visit->id]) }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="form-control btn btn-danger">Cancel</a>
+                                </form>
+                            </th>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+              </div>
             </div>
         </div>
     </div>
