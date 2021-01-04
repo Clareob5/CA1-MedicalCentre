@@ -49,14 +49,18 @@ class VisitController extends Controller
   {
     $request->validate([
       'date' => 'required|date|after:today',
-      'time' => 'required',
+      'start_time' => 'required|date_format:H:i',
+      'end_time' => 'required|date_format:H:i',
+      'duration' => 'required',
       'cost' => 'required|min:0|max:1000',
       'patient_id' => 'required',
       'doctor_id' => 'required'
     ]);
     $visit = new Visit();
     $visit->date = $request->input('date');
-    $visit->time = $request->input('time');
+    $visit->start_time = $request->input('start_time');
+    $visit->end_time = $request->input('end_time');
+    $visit->duration = $request->input('duration');
     $visit->cost = $request->input('cost');
     $visit->patient_id = $request->input('patient_id');
     $visit->doctor_id = $request->input('doctor_id');
@@ -110,14 +114,18 @@ class VisitController extends Controller
   {
     $request->validate([
       'date' => 'required|date|after:today',
-      'time' => 'required',
+      'start_time' => 'required|date_format:H:i',
+      'end_time' => 'required|date_format:H:i',
+      'duration' => 'required',
       'cost' => 'required|min:0|max:1000',
       'patient_id' => 'required',
       'doctor_id' => 'required'
     ]);
     $visit = Visit::findOrFail($id);
     $visit->date = $request->input('date');
-    $visit->time = $request->input('time');
+    $visit->start_time = $request->input('start_time');
+    $visit->end_time = $request->input('end_time');
+    $visit->duration = $request->input('duration');
     $visit->cost = $request->input('cost');
     $visit->patient_id = $request->input('patient_id');
     $visit->doctor_id = $request->input('doctor_id');

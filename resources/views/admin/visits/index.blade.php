@@ -20,7 +20,9 @@
                       <table id="table-visits" class="table table-hover">
                         <thead>
                           <th>Date</th>
-                          <th>Time</th>
+                          <th>Start Time</th>
+                          <th>End Time</th>
+                          <th>Duration</th>
                           <th>Cost</th>
                           <th>Patients Name</th>
                           <th>Doctors Name</th>
@@ -28,7 +30,9 @@
                           @foreach ($visits as $visit)
                             <tr data-id="{{ $visit->id }}">
                               <td>{{ $visit->date }}</td>
-                              <td>{{ $visit->time }}</td>
+                              <td>{{ $visit->start_time->format('H:i') }}</td>
+                              <td>{{ $visit->end_time->format('H:i') }}</td>
+                              <td>{{ $visit->duration->format('H:i') }}</td>
                               <td>{{ $visit->cost }}</td>
                               <td>{{ $visit->patient->user->name }}</td>
                               <td>{{ $visit->doctor->user->name }}</td>

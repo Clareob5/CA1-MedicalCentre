@@ -66,7 +66,7 @@
                             <th>
                                 <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-primary">View</a>
                                 <a href="{{ route('admin.visits.edit', $visit->id )}}" class="btn btn-warning">Edit</a>
-                                <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $patient->id, 'rid' => $visit->id]) }}">
+                                <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $visit->patient->id, 'rid' => $visit->id]) }}">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="form-control btn btn-danger">Cancel</a>

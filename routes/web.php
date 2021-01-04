@@ -22,12 +22,12 @@ use App\Http\Controllers\User\Doctor\VisitController as DoctorVisitController;
 //     return view('welcome');
 // });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home');
-Route::get('/user/doctor/home', [App\Http\Controllers\User\Doctor\HomeController::class, 'index'])->name('user.doctors.home');
-Route::get('/user/patient/home', [App\Http\Controllers\User\Patient\HomeController::class, 'index'])->name('user.patients.home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home')->middleware('verified');
+Route::get('/user/doctor/home', [App\Http\Controllers\User\Doctor\HomeController::class, 'index'])->name('user.doctors.home')->middleware('verified');
+Route::get('/user/patient/home', [App\Http\Controllers\User\Patient\HomeController::class, 'index'])->name('user.patients.home')->middleware('verified');
 
 Route::get('/admin/doctors/index', [DoctorController::class, 'index'])->name('admin.doctors.index');
 Route::get('/admin/doctor/create', [DoctorController::class, 'create'])->name('admin.doctors.create');
