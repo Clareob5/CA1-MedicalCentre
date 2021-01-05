@@ -27,8 +27,16 @@
                   <input type="date" class="form-control" name="date" id="date" value="{{ old('date', $visit->date) }}" />
               </div>
               <div class="form-group">
-                  <label for="time">Time</label>
-                  <input type="time" class="form-control" name="time" id="time" value="{{ old('time', $visit->time) }}" />
+                  <label for="start_time">Start Time</label>
+                  <input type="time" class="form-control" name="start_time" id="start_time" value="{{ old('start_time', $visit->start_time) }}" />
+              </div>
+              <div class="form-group">
+                  <label for="end_time">End Time</label>
+                  <input type="time" class="form-control" name="end_time" id="end_time" value="{{ old('end_time', $visit->end_time) }}" />
+              </div>
+              <div class="form-group">
+                  <label for="duration">Duration</label>
+                  <input type="time" class="form-control" name="duration" id="duration" value="{{ old('duration', $visit->duration) }}" />
               </div>
               <div class="form-group">
                   <label for="cost">Cost</label>

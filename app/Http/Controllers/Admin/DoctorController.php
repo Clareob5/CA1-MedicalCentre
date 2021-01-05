@@ -65,6 +65,8 @@ class DoctorController extends Controller
     $doctor->user_id = $user->id;
     $doctor->save();
 
+    $request->session()->flash('success', 'Doctor Added Successfully');
+
     return redirect()->route('admin.doctors.index');
   }
 
@@ -123,7 +125,9 @@ class DoctorController extends Controller
     $doctor->date_started = $request->input('date_started');
     $doctor->save();
 
-      return redirect()->route('admin.doctors.index');
+    $request->session()->flash('info', 'Doctor Edited Successfully');
+
+    return redirect()->route('admin.doctors.index');
   }
 
   /**
@@ -132,10 +136,12 @@ class DoctorController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(Request $request,$id)
   {
     $doctor = doctor::findOrFail($id);
     $doctor->delete();
+
+    $request->session()->flash('danger', 'Doctor Deleted Successfully');
 
     return redirect()->route('admin.doctors.index');
   }

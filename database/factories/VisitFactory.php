@@ -28,7 +28,7 @@ class VisitFactory extends Factory
             'cost' => $this->faker->randomFloat($nbMaxDecimals = 6, $min = 0, $max = 999.99),
             'start_time' => $this->faker->time($format = 'H:i', $max = 'now'),
             'end_time' => $this->faker->time($format = 'H:i', $max = 'now'),
-            'duration' => '1', 
+            'duration' => '01:00:00', 
             'patient_id' => Patient::factory(),
             'doctor_id' => Doctor::factory()
         ];

@@ -21,7 +21,7 @@
                 </br>
                 Email: {{ Auth::user()->email }}
                 </br>
-                Address: {{ Auth::user()->doctor->date_started }}
+                Date Started: {{ Auth::user()->doctor->date_started }}
                 </br>
                 Phone: {{ Auth::user()->phone }}
                 </br>
@@ -38,14 +38,18 @@
                <table class="table">
                    <thead>
                        <th>Date</th>
-                       <th>Time</th>
+                       <th>Start Time</th>
+                       <th>End Time</th>
+                       <th>Duration</th>
                        <th>Actions</th>
                    </thead>
                    <tbody>
                        @foreach (Auth::user()->doctor->visits as $visit)
                        <tr>
                            <th>{{ $visit->date }}</th>
-                           <th>{{ $visit->time }}</th>
+                           <th>{{ $visit->start_time }}</th>
+                           <th>{{ $visit->end_time }}</th>
+                           <th>{{ $visit->duration }}</th>
                            <th>
                                  <a href="{{ route('user.doctors.visits.edit', $visit->id)}}" class="btn btn-secondary">Edit</a>
                                <form style="display:inline-block" method="POST" action="{{ route('user.doctors.visits.destroy', [ 'id' => $visit->id]) }}">

@@ -16,6 +16,16 @@
 
                     {{ __('You are logged in as a patient!') }}
 
+                    </br>
+                    Hi {{ Auth::user()->name }}
+                    </br>
+                    Email: {{ Auth::user()->email }}
+                    </br>
+                    Policy Number: {{ Auth::user()->patient->policy_num }}
+                    </br>
+                    Phone: {{ Auth::user()->phone }}
+                    </br>
+                 </div>
                     <div class="card-header">
                       Visits
                     </div>
@@ -26,16 +36,22 @@
                     <table class="table">
                         <thead>
                             <th>Date</th>
-                            <th>Time</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Duration</th>
+                            <th>Cost</th>
                             <th>Actions</th>
                         </thead>
                         <tbody>
                             @foreach (Auth::user()->patient->visits as $visit)
                             <tr>
                                 <th>{{ $visit->date }}</th>
-                                <th>{{ $visit->time }}</th>
+                                <th>{{ $visit->start_time }}</th>
+                                <th>{{ $visit->end_time }}</th>
+                                <th>{{ $visit->duration }}</th>
+                                <th>{{ $visit->cost }}</th>
                                 <th>
-                                    <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => Auth::user()->patient->id, 'rid' => $visit->id]) }}">
+                                    <form style="display:inline-block" method="POST" action="{{ route('user.patients.visits.destroy', [ 'id' => $visit->id]) }}">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="form-control btn btn-danger">Cancel</a>

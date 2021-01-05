@@ -30,9 +30,9 @@
                           @foreach ($visits as $visit)
                             <tr data-id="{{ $visit->id }}">
                               <td>{{ $visit->date }}</td>
-                              <td>{{ $visit->start_time->format('H:i') }}</td>
-                              <td>{{ $visit->end_time->format('H:i') }}</td>
-                              <td>{{ $visit->duration->format('H:i') }}</td>
+                              <td>{{ $visit->start_time }}</td>
+                              <td>{{ $visit->end_time }}</td>
+                              <td>{{ $visit->duration }}</td>
                               <td>{{ $visit->cost }}</td>
                               <td>{{ $visit->patient->user->name }}</td>
                               <td>{{ $visit->doctor->user->name }}</td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PatientController as PatientController;
 use App\Http\Controllers\Admin\DoctorController as DoctorController;
 use App\Http\Controllers\Admin\VisitController as VisitController;
 use App\Http\Controllers\User\Doctor\VisitController as DoctorVisitController;
+use App\Http\Controllers\User\Patient\VisitController as PatientVisitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,9 @@ use App\Http\Controllers\User\Doctor\VisitController as DoctorVisitController;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+
 Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home')->middleware('verified');
 Route::get('/user/doctor/home', [App\Http\Controllers\User\Doctor\HomeController::class, 'index'])->name('user.doctors.home')->middleware('verified');
 Route::get('/user/patient/home', [App\Http\Controllers\User\Patient\HomeController::class, 'index'])->name('user.patients.home')->middleware('verified');
@@ -60,3 +63,5 @@ Route::post('/doctor/visit/store', [DoctorVisitController::class, 'store'])->nam
 Route::get('/doctor/visit/{id}/edit', [DoctorVisitController::class, 'edit'])->name('user.doctors.visits.edit');
 Route::put('/doctor/visit/{id}', [DoctorVisitController::class, 'update'])->name('user.doctors.visits.update');
 Route::delete('/doctor/visit/{id}', [DoctorVisitController::class, 'destroy'])->name('user.doctors.visits.destroy');
+
+Route::delete('/patient/visit/{id}', [PatientVisitController::class, 'destroy'])->name('user.patients.visits.destroy');

@@ -16,9 +16,18 @@
                               <td>Date</td>
                               <td>{{ $visit->date }}</td>
                             </tr>
+
+                            <tr>
+                              <td>Start Time</td>
+                              <td>{{ $visit->start_time }}</td>
+                            </tr>
                             <tr>
                               <td>Time</td>
-                              <td>{{ $visit->time }}</td>
+                              <td>{{ $visit->end_time }}</td>
+                            </tr>
+                            <tr>
+                              <td>Time</td>
+                              <td>{{ $visit->duration }}</td>
                             </tr>
                             <tr>
                               <td>Cost</td>

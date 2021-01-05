@@ -66,6 +66,8 @@ class VisitController extends Controller
     $visit->doctor_id = $request->input('doctor_id');
     $visit->save();
 
+    $request->session()->flash('success', 'Visit Added Successfully');
+
     return redirect()->route('admin.visits.index');
   }
 
@@ -116,7 +118,7 @@ class VisitController extends Controller
       'date' => 'required|date|after:today',
       'start_time' => 'required|date_format:H:i',
       'end_time' => 'required|date_format:H:i',
-      'duration' => 'required',
+      'duration' => 'required|date_format:H:i',
       'cost' => 'required|min:0|max:1000',
       'patient_id' => 'required',
       'doctor_id' => 'required'
@@ -131,7 +133,9 @@ class VisitController extends Controller
     $visit->doctor_id = $request->input('doctor_id');
     $visit->save();
 
-      return redirect()->route('admin.visits.index');
+    $request->session()->flash('info', 'Visit Edited Successfully');
+
+    return redirect()->route('admin.visits.index');
   }
 
   /**
@@ -140,10 +144,12 @@ class VisitController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(Request $request, $id)
   {
     $visit = Visit::findOrFail($id);
     $visit->delete();
+
+    $request->session()->flash('delete', 'Visit Deleted Successfully');
 
     return redirect()->route('admin.visits.index');
   }

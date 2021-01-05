@@ -71,6 +71,8 @@ class PatientController extends Controller
     $patient->med_insurance_id = $request->input('med_insurance_id');
     $patient->save();
 
+    $request->session()->flash('success', 'Patient Added Successfully');
+
     return redirect()->route('admin.patients.index');
   }
 
@@ -135,7 +137,9 @@ class PatientController extends Controller
     $patient->policy_num = $request->input('policy_num');
     $patient->save();
 
-      return redirect()->route('admin.patients.index');
+    $request->session()->flash('info', 'Patient Edited Successfully');
+
+    return redirect()->route('admin.patients.index');
   }
 
   /**
@@ -144,10 +148,12 @@ class PatientController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(Request $request, $id)
   {
     $patient = Patient::findOrFail($id);
     $patient->delete();
+
+    $request->session()->flash('danger', 'Patient Deleted Successfully');
 
     return redirect()->route('admin.patients.index');
   }

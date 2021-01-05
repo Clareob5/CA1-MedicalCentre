@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
       $admin->name = 'Clare OB';
       $admin->address = 'Dunleary House';
       $admin->phone = '0875643524';
-      $admin->email = 'admin@cobbookstore.com';
+      $admin->email = 'admin@cobmedcentre.com';
       $admin->password = Hash::make('secret');
       $admin->save();
       $admin->roles()->attach($role_admin);

@@ -49,7 +49,7 @@
             </div>
             <div class="card-header">
               Visits
-              <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a>
+              {{-- <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a> --}}
             </div>
             <div class="card-body">
               @if (count($patient->visits) == 0)
@@ -58,16 +58,22 @@
             <table class="table">
                 <thead>
                     <th>Date</th>
-                    <th>Time</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Duration</th>
+                    <th>Cost</th>
                     <th>Doctor</th>
                     <th>Actions</th>
                 </thead>
                 <tbody>
                     @foreach ($patient->visits as $visit)
                     <tr>
-                        <th>{{ $visit->date }}</th>
-                        <th>{{ $visit->time }}</th>
-                        <th>{{ $visit->doctor->user->name }}</th>
+                        <td>{{ $visit->date }}</td>
+                        <td>{{ $visit->start_time }}</td>
+                        <td>{{ $visit->end_time }}</td>
+                        <td>{{ $visit->duration }}</td>
+                        <td>{{ $visit->cost }}</td>
+                        <td>{{ $visit->doctor->user->name }}</td>
                         <th>
                             <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-primary">View</a>
                             <a href="{{ route('admin.visits.edit', $visit->id )}}" class="btn btn-warning">Edit</a>

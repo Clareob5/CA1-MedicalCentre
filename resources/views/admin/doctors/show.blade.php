@@ -44,29 +44,31 @@
                 </div>
                 <div class="card-header">
                   Visits
-                  <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a>
+                  {{-- <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a> --}}
                 </div>
                 <div class="card-body">
                   @if (count($doctor->visits) == 0)
-                  <p>There are no visits for this patient.</p>
+                  <p>There are no visits for this doctor.</p>
                 @else
                 <table class="table">
                     <thead>
                         <th>Date</th>
-                        <th>Time</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
                         <th>Patient</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
                         @foreach ($doctor->visits as $visit)
                         <tr>
-                            <th>{{ $visit->date }}</th>
-                            <th>{{ $visit->time }}</th>
-                            <th>{{ $visit->patient->user->name }}</th>
+                            <td>{{ $visit->date }}</td>
+                            <td>{{ $visit->start_time->format('H:i') }}</td>
+                            <td>{{ $visit->end_time }}</td>
+                            <td>{{ $visit->patient->user->name }}</td>
                             <th>
                                 <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-primary">View</a>
                                 <a href="{{ route('admin.visits.edit', $visit->id )}}" class="btn btn-warning">Edit</a>
-                                <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $visit->patient->id, 'rid' => $visit->id]) }}">
+                                <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $visit->doctor->id, 'rid' => $visit->id]) }}">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="form-control btn btn-danger">Cancel</a>
