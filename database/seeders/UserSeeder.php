@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
       $role_patient = Role::where('name', 'patient')->first();
 
 
+
       $admin = new User();
       $admin->name = 'Clare OB';
       $admin->address = 'Dunleary House';
@@ -62,8 +63,6 @@ class UserSeeder extends Seeder
       $patient->user_id = $user->id;
       $patient->med_insurance_id = 1;
       $patient->save();
-
-
 
       for($i = 1; $i <= 10; $i++){
         $user = User::factory()->hasDoctor()->create();

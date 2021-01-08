@@ -30,9 +30,10 @@ class RoleSeeder extends Seeder
            $role_doctor->description = 'A doctor in the medical center';
            $role_doctor->save();
 
-           $role_doctor = new Role();
-           $role_doctor->name = 'patient';
-           $role_doctor->description = 'A patient in the medical center';
-           $role_doctor->save();
+           $role_patient = new Role();
+           $role_patient->name = 'patient';
+           $role_patient->description = 'A patient in the medical center';
+           $role_patient->save();
+
      }
 }
