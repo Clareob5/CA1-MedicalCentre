@@ -82,14 +82,14 @@ class RegisterController extends Controller
       $user->password = Hash::make($data['password']);
       $user->save();
 
-      $user->roles()->attach(Role::where('name','patient')->first());
-
-      $patient = new Patient();
-      $patient->has_insurance = true;
-      $patient->policy_num = '235463';
-      $patient->user_id = $user->id;
-      $patient->med_insurance_id = 2;
-      $patient->save();
+       $user->roles()->attach(Role::where('name','user')->first());
+      //
+      // $patient = new Patient();
+      // $patient->has_insurance = true;
+      // $patient->policy_num = '235463';
+      // $patient->user_id = $user->id;
+      // $patient->med_insurance_id = 2;
+      // $patient->save();
 
       return $user;
     }
