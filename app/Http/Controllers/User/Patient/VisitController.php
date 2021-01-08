@@ -15,7 +15,7 @@ class VisitController extends Controller
       $this->middleware('role:patient');
   }
 
-  public function destroy($id)
+  public function destroy(Request $request, $id)
   {
     $visit = Visit::findOrFail($id);
     $visit->delete();

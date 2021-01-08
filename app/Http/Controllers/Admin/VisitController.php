@@ -51,11 +51,12 @@ class VisitController extends Controller
       'date' => 'required|date|after:today',
       'start_time' => 'required|date_format:H:i',
       'end_time' => 'required|date_format:H:i',
-      'duration' => 'required',
+      'duration' => 'required|date_format:H:i',
       'cost' => 'required|min:0|max:1000',
       'patient_id' => 'required',
       'doctor_id' => 'required'
     ]);
+
     $visit = new Visit();
     $visit->date = $request->input('date');
     $visit->start_time = $request->input('start_time');
@@ -149,7 +150,7 @@ class VisitController extends Controller
     $visit = Visit::findOrFail($id);
     $visit->delete();
 
-    $request->session()->flash('delete', 'Visit Deleted Successfully');
+    $request->session()->flash('danger', 'Visit Deleted Successfully');
 
     return redirect()->route('admin.visits.index');
   }
