@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('Pinegrove', 'Pinegrove') }}
@@ -53,6 +53,7 @@
                             @endif
                         @endguest
                       @auth
+                        @if( Auth::user()->hasRole('admin') )
                         <li class="nav-item">
                           <a href="{{ route('admin.doctors.index') }}" class="nav-link">Doctors</a>
                         </li>
@@ -62,7 +63,7 @@
                         <li class="nav-item">
                           <a href="{{ route('admin.visits.index') }}" class="nav-link">Visits</a>
                         </li>
-
+                      @endif
                           <li class="nav-item dropdown">
                               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                   {{ Auth::user()->name }}

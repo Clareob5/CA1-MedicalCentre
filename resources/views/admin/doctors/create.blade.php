@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-9 col-md-offset-2">
      <div class="card">
        <div class="card-header">
          Add new Doctor
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="date_started">Date Started</label>
-                    <input type="text" class="form-control" name="date_started" id="date_started" value="{{ old('date_started') }}" />
+                    <input type="text" class="form-control" name="date_started" id="date_started" value="{{ date('j F, Y', strtotime(old('date_started'))) }}" />
                 </div>
                 <div>
                   <a href="{{ route('admin.doctors.index') }}" class="btn btn-default">Cancel</a>

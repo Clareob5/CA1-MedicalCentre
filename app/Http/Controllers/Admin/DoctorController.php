@@ -79,7 +79,6 @@ class DoctorController extends Controller
   public function show($id)
   {
       $doctor = Doctor::findOrFail($id);
-
       return view('admin.doctors.show', [
         'doctor' => $doctor
       ]);

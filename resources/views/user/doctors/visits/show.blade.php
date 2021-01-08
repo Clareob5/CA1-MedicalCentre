@@ -14,24 +14,24 @@
                         <tbody>
                             <tr>
                               <td>Date</td>
-                              <td>{{ $visit->date }}</td>
+                              <td>{{ date('j F, Y', strtotime($visit->date)) }}</td>
                             </tr>
 
                             <tr>
                               <td>Start Time</td>
-                              <td>{{ $visit->start_time }}</td>
+                              <td>{{ date('G:i', strtotime($visit->start_time)) }}</td>
                             </tr>
                             <tr>
                               <td>Time</td>
-                              <td>{{ $visit->end_time }}</td>
+                              <td>{{ date('G:i', strtotime($visit->end_time)) }}</td>
                             </tr>
                             <tr>
                               <td>Time</td>
-                              <td>{{ $visit->duration }}</td>
+                              <td>{{ date('G', strtotime($visit->duration)) }}</td>
                             </tr>
                             <tr>
                               <td>Cost</td>
-                              <td>{{  $visit->cost }}</td>
+                              <td>€{{  $visit->cost }}</td>
                             </tr>
                             <tr>
                               <td>Patient</td>

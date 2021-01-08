@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
+use App\Models\Role;
 
 class HomeController extends Controller
 {
@@ -27,7 +29,10 @@ class HomeController extends Controller
    public function index()
  {
 
-   return view('admin.home');
+   $users = User::all();
+   return view('admin.home', [
+     'users' => $users,
+   ]);
 
  }
 }

@@ -26,7 +26,8 @@
                 Phone: {{ Auth::user()->phone }}
                 </br>
                </div>
-
+             </div>
+             <div class="card">
                <div class="card-header">
                  Visits
                    <a href="{{ route('user.doctors.visits.create')}}" class="btn btn-primary float-right">Add</a>
@@ -41,15 +42,17 @@
                        <th>Start Time</th>
                        <th>End Time</th>
                        <th>Duration</th>
+                       <th>Cost</th>
                        <th>Actions</th>
                    </thead>
                    <tbody>
                        @foreach (Auth::user()->doctor->visits as $visit)
                        <tr>
-                           <th>{{ $visit->date }}</th>
-                           <th>{{ $visit->start_time }}</th>
-                           <th>{{ $visit->end_time }}</th>
-                           <th>{{ $visit->duration }}</th>
+                           <td>{{ $visit->date }}</td>
+                           <td>{{ $visit->start_time }}</td>
+                           <td>{{ $visit->end_time }}</td>
+                           <td>{{ $visit->duration }}</td>
+                           <td>€{{ $visit->cost }}</td>
                            <th>
                                  <a href="{{ route('user.doctors.visits.edit', $visit->id)}}" class="btn btn-secondary">Edit</a>
                                <form style="display:inline-block" method="POST" action="{{ route('user.doctors.visits.destroy', [ 'id' => $visit->id]) }}">

@@ -31,7 +31,7 @@
                               <td>{{ $doctor->user->address }}</td>
                               <td>{{ $doctor->user->phone }}</td>
                               <td>{{ $doctor->user->email }}</td>
-                              <td>{{ $doctor->date_started }}</td>
+                              <td>{{ date('j F, Y', strtotime($doctor->date_started)) }}</td>
                               <td>
                                 <a href="{{ route('admin.doctors.show', $doctor->id )}}" class="btn btn-primary">View</a>
                                 <a href="{{ route('admin.doctors.edit', $doctor->id )}}" class="btn btn-warning">Edit</a>
@@ -47,7 +47,7 @@
                       </table>
                     @endif
                 </div>
-            
+
             </div>
         </div>
     </div>

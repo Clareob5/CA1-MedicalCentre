@@ -26,6 +26,8 @@
                     Phone: {{ Auth::user()->phone }}
                     </br>
                  </div>
+               </div>
+                 <div class="card">
                     <div class="card-header">
                       Visits
                     </div>
@@ -40,16 +42,18 @@
                             <th>End Time</th>
                             <th>Duration</th>
                             <th>Cost</th>
+                            <th>Doctor</th>
                             <th>Actions</th>
                         </thead>
                         <tbody>
                             @foreach (Auth::user()->patient->visits as $visit)
                             <tr>
-                                <th>{{ $visit->date }}</th>
-                                <th>{{ $visit->start_time }}</th>
-                                <th>{{ $visit->end_time }}</th>
-                                <th>{{ $visit->duration }}</th>
-                                <th>{{ $visit->cost }}</th>
+                                <td>{{ $visit->date }}</td>
+                                <td>{{ $visit->start_time }}</td>
+                                <td>{{ $visit->end_time }}</td>
+                                <td>{{ $visit->duration }}</td>
+                                <td>€{{ $visit->cost }}</td>
+                                <td>{{ $visit->doctor->user->name}}
                                 <th>
                                     <form style="display:inline-block" method="POST" action="{{ route('user.patients.visits.destroy', [ 'id' => $visit->id]) }}">
                                         <input type="hidden" name="_method" value="DELETE">

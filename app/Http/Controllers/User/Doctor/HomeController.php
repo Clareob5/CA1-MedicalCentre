@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User\Doctor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Doctor;
+use App\Models\Visit;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,6 @@ class HomeController extends Controller
    */
    public function index()
  {
-
    return view('user.doctors.home');
 }
 

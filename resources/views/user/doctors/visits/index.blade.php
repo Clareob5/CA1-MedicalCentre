@@ -31,7 +31,7 @@
                               <td>{{ $visit->start_time }}</td>
                               <td>{{ $visit->end_time }}</td>
                               <td>{{ $visit->duration }}</td>
-                              <td>{{ $visit->cost }}</td>
+                              <td>€{{ $visit->cost }}</td>
                               <td>{{ $visit->patient->user->name }}</td>
                               <td>{{ $visit->doctor->user->name }}</td>
                               <td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Patient;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Doctor;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,10 @@ class HomeController extends Controller
    */
    public function index()
  {
-
-   return view('user.patients.home');
+   $doctor = Doctor::all();
+   return view('user.patients.home', [
+     'doctor' => $doctor,
+   ]);
 }
 
 }

@@ -3,14 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-9 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
                   Name: {{ $doctor->user->name }}
                 </div>
 
                 <div class="card-body">
-                      <table class="table table-hover">
+                      <table class="table table-hover ">
                         <tbody>
                             <tr>
                               <td>Name</td>
@@ -30,7 +30,7 @@
                             </tr>
                             <tr>
                               <td>Date Started</td>
-                              <td>{{ $doctor->date_started }}</td>
+                              <td>{{ date('j F, Y', strtotime($doctor->date_started)) }}</td>
                             </tr>
                         </tbody>
                       </table>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="card-header">
                   Visits
-                  {{-- <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a> --}}
+                  <a href="{{ route('admin.visits.create', $doctor->id )}}" class="btn btn-primary float-right">Add</a>
                 </div>
                 <div class="card-body">
                   @if (count($doctor->visits) == 0)
@@ -55,15 +55,19 @@
                         <th>Date</th>
                         <th>Start Time</th>
                         <th>End Time</th>
+                        <th>Duration</th>
+                        <th>Cost</th>
                         <th>Patient</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
                         @foreach ($doctor->visits as $visit)
                         <tr>
-                            <td>{{ $visit->date }}</td>
-                            <td>{{ $visit->start_time->format('H:i') }}</td>
-                            <td>{{ $visit->end_time }}</td>
+                            <td>{{ date('j F, Y', strtotime($visit->date)) }}</td>
+                            <td>{{ date('G:i', strtotime($visit->start_time)) }}</td>
+                            <td>{{ date('G:i', strtotime($visit->end_time)) }}</td>
+                            <td>{{ date('G', strtotime($visit->duration)) }} hour's'</td>
+                            <td>€{{ $visit->cost }}</td>
                             <td>{{ $visit->patient->user->name }}</td>
                             <th>
                                 <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-primary">View</a>

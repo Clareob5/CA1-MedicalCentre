@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DoctorController as DoctorController;
 use App\Http\Controllers\Admin\VisitController as VisitController;
 use App\Http\Controllers\User\Doctor\VisitController as DoctorVisitController;
 use App\Http\Controllers\User\Patient\VisitController as PatientVisitController;
+use App\Http\Controllers\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +27,12 @@ use App\Http\Controllers\User\Patient\VisitController as PatientVisitController;
 Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/user/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.home')->middleware('verified');
 
 Route::get('/admin/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home')->middleware('verified');
-Route::get('/user/doctor/home', [App\Http\Controllers\User\Doctor\HomeController::class, 'index'])->name('user.doctors.home')->middleware('verified');
-Route::get('/user/patient/home', [App\Http\Controllers\User\Patient\HomeController::class, 'index'])->name('user.patients.home')->middleware('verified');
+Route::get('/doctor/home', [App\Http\Controllers\User\Doctor\HomeController::class, 'index'])->name('user.doctors.home')->middleware('verified');
+Route::get('/patient/home', [App\Http\Controllers\User\Patient\HomeController::class, 'index'])->name('user.patients.home')->middleware('verified');
 
 Route::get('/admin/doctors/index', [DoctorController::class, 'index'])->name('admin.doctors.index');
 Route::get('/admin/doctor/create', [DoctorController::class, 'create'])->name('admin.doctors.create');
