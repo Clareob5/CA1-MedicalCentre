@@ -117,9 +117,9 @@ class VisitController extends Controller
   {
     $request->validate([
       'date' => 'required|date|after:today',
-      'start_time' => 'required|date_format:H:i',
-      'end_time' => 'required|date_format:H:i',
-      'duration' => 'required|date_format:H:i',
+      'start_time' => 'required',
+      'end_time' => 'required',
+      'duration' => 'required',
       'cost' => 'required|min:0|max:1000',
       'patient_id' => 'required',
       'doctor_id' => 'required'

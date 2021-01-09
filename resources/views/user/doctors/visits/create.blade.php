@@ -53,7 +53,7 @@
                     <label for="doctor">Doctor</label>
                     <select class="form-control col-6" name='doctor_id'>
                       @foreach ($doctors as $doctor)
-                        <option value="{{ $doctor->id }}" {{ (old('doctor_id') == Auth::user()->doctor->id) ? "selected" : "" }}>{{ $doctor->user->name }}</option>
+                        <option value="{{ $doctor->id }}" {{ (old('doctor_id') == Auth::user()->doctor->id) ? "selected" : "" }}>Dr. {{ $doctor->user->name }}</option>
                       @endforeach
                     </select>
                 </div>

@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="date_started">Date Started</label>
-                    <input type="text" class="form-control" name="date_started" id="date_started" value="{{ date('j F, Y', strtotime(old('date_started'))) }}" />
+                    <input type="date" class="form-control" name="date_started" id="date_started" value="{{ date(old('date_started')) }}" />
                 </div>
                 <div>
                   <a href="{{ route('admin.doctors.index') }}" class="btn btn-default">Cancel</a>

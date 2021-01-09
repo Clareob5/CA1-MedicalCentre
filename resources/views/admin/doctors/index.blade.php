@@ -42,13 +42,13 @@
                                         <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Delete Doctorr</h5>
+                                                <h5 class="modal-title">Delete Doctor</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Are you sure! this doctor may have visits</p>
+                                                <p>Are you sure! If this doctor has visits they will also be deleted</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" onclick="document.querySelector('#delete-form').submit()">Proceed</button>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\Visit;
 
 class HomeController extends Controller
 {
@@ -28,8 +29,10 @@ class HomeController extends Controller
    public function index()
  {
    $patient = Patient::all();
+   $cancelled = Visit::withTrashed()->get();
    return view('user.doctors.home', [
      'patient' => $patient,
+     'cancelled' => $cancelled
    ]);
 }
 

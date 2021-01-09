@@ -48,12 +48,12 @@
                         <tbody>
                             @foreach (Auth::user()->patient->visits as $visit)
                             <tr>
-                                <td>{{ $visit->date }}</td>
-                                <td>{{ $visit->start_time }}</td>
-                                <td>{{ $visit->end_time }}</td>
-                                <td>{{ $visit->duration }}</td>
+                                <td>{{ date('j F, Y', strtotime($visit->date)) }}</td>
+                                <td>{{ date('G:i', strtotime($visit->start_time)) }}</td>
+                                <td>{{ date('G:i', strtotime($visit->end_time)) }}</td>
+                                <td>{{ date('G:i', strtotime($visit->duration)) }}</td>
                                 <td>€{{ $visit->cost }}</td>
-                                <td>{{ $visit->doctor->user->name}}
+                                <td>Dr. {{ $visit->doctor->user->name}}
                                 <th>
                                     <form style="display:inline-block" method="POST" action="{{ route('user.patients.visits.destroy', [ 'id' => $visit->id]) }}">
                                         <input type="hidden" name="_method" value="DELETE">

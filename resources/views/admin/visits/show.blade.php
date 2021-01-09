@@ -26,7 +26,7 @@
                             </tr>
                             <tr>
                               <td>Duration</td>
-                              <td>{{ date('G', strtotime($visit->duration)) }} hours</td>
+                              <td>{{ date('G:i', strtotime($visit->duration)) }} hrs</td>
                             </tr>
                             <tr>
                               <td>Cost</td>

@@ -46,13 +46,13 @@
                         <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Delete Doctorr</h5>
+                                <h5 class="modal-title">Delete Patient</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Are you sure! this patient may have visits</p>
+                                <p>Are you sure! If this patient has any visits they will be deleted</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" onclick="document.querySelector('#delete-form').submit()">Proceed</button>
@@ -68,7 +68,7 @@
             </div>
             <div class="card-header">
               Visits
-              <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a>
+              <a href="{{ route('admin.visits.create', $patient->id)}}" class="btn btn-primary float-right">Add</a>
             </div>
             <div class="card-body">
               @if (count($patient->visits) == 0)

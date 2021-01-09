@@ -39,7 +39,7 @@
                             </tr>
                             <tr>
                               <td>Doctor</td>
-                              <td>{{ $visit->doctor->user->name}}</td>
+                              <td>Dr. {{ $visit->doctor->user->name}}</td>
                             </tr>
                         </tbody>
                       </table>

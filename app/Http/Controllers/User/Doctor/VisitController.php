@@ -23,8 +23,8 @@ class VisitController extends Controller
   public function index()
   {
     $visits = Visit::all();
-    return view('user.doctors.visits.index', [
-      'visits' => $visits
+      return view('user.doctors.visits.index', [
+      'visits' => $visits,
     ]);
   }
 
@@ -114,8 +114,8 @@ class VisitController extends Controller
   {
     $request->validate([
       'date' => 'required|date|after:today',
-      'start_time' => 'required|date_format:H:i',
-      'end_time' => 'required|date_format:H:i',
+      'start_time' => 'required',
+      'end_time' => 'required',
       'duration' => 'required',
       'cost' => 'required|min:0|max:1000',
       'patient_id' => 'required',

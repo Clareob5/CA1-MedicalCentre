@@ -38,13 +38,8 @@
                     <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}" />
                 </div>
                 <div class="form-group">
-                    <label for="has_insurance">Check box if you have insurance</label>
-                    <input type="hidden" name="has_insurance" value="0"/>
-                    <input type="checkbox" class="form-control checkbox" name="has_insurance" id="has_insurance" value="1" {{ old('has_insurance') ? 'checked="checked"' : '' }} />
-                </div>
-                <div class="form-group">
                     <label for="insurance_company">Insurance Company</label>
-                    <select name='med_insurance_id'>
+                    <select class="form-control" name='med_insurance_id'>
                       @foreach ($med_insurances as $med_insurance)
                         <option value="{{ $med_insurance->id }}" {{ (old('med_insurance_id') == $med_insurance->id) ? "selected" : "" }}>{{ $med_insurance->insurance_company }}</option>
                       @endforeach
@@ -53,6 +48,11 @@
                 <div class="form-group">
                     <label for="policy_num">Policy Number</label>
                     <input type="text" class="form-control" name="policy_num" id="policy_num" value="{{ old('policy_num') }}" />
+                </div>
+                <div class="form-check margin-top">
+                    <label class="form-check-label" for="has_insurance">Check box if you have insurance</label>
+                    <input type="hidden" name="has_insurance" value="0"/>
+                    <input type="checkbox" class="form-check-input checkbox" name="has_insurance" id="has_insurance" value="1" {{ old('has_insurance') ? 'checked="checked"' : '' }} />
                 </div>
                 <div>
                   <a href="{{ route('admin.patients.index') }}" class="btn btn-default">Cancel</a>
