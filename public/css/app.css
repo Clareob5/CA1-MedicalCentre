@@ -3139,8 +3139,10 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-warning {
-  color: #ffed4a;
-  border-color: #ffed4a;
+  color: #FC9F0A;
+  border-color: #FC9F0A; 
+  /* color: #ffed4a;
+  border-color: #ffed4a; */
 }
 
 .btn-outline-warning:hover {
@@ -10903,3 +10905,7 @@ a.text-dark:focus {
   }
 }
 
+.red{
+  color: #ED0707;
+  background-color: #ED0707;
+}

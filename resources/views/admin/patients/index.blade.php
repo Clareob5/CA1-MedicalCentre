@@ -37,11 +37,30 @@
                               <td>
                                 <a href="{{ route('admin.patients.show', $patient->id )}}" class="btn btn-primary">View</a>
                                 <a href="{{ route('admin.patients.edit', $patient->id )}}" class="btn btn-warning">Edit</a>
-                                <form style="display:inline-block" method="POST" action="{{ route('admin.patients.destroy', $patient->id) }}">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="form-control btn btn-danger">Delete</button>
-                                </form>
+                                <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal">Delete</a>
+                                <div class="clearfix"></div>
+                                <div class="modal fade" id="delete-modal">
+                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete Doctorr</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure! this patient may have visits</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" onclick="document.querySelector('#delete-form').submit()">Proceed</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <form method="POST" action="{{ route('admin.patients.destroy', $patient->id) }}" id="delete-form">
+                                    @csrf
+                                    @method('DELETE')
                               </td>
                             </tr>
                           @endforeach

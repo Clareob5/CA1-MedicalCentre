@@ -26,6 +26,7 @@ class DoctorController extends Controller
     return view('admin.doctors.index', [
       'doctors' => $doctors
     ]);
+
   }
 
   /**

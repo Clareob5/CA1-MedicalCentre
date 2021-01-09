@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <h2 class="car-header">{{ __('Dashboard') }}</h2>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,23 +14,17 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in as a doctor!') }}
-                  </br>
-
-                  Hi {{ Auth::user()->name }}
-                </br>
-                Email: {{ Auth::user()->email }}
-                </br>
-                Date Started: {{ Auth::user()->doctor->date_started }}
-                </br>
-                Phone: {{ Auth::user()->phone }}
+                 <p>Hi {{ Auth::user()->name }}</p>
+                 <p>Email: {{ Auth::user()->email }}</p>
+                 <p>Date Started: {{ Auth::user()->doctor->date_started }}</p>
+                 <p>Phone: {{ Auth::user()->phone }}</p>
                 </br>
                </div>
              </div>
              <div class="card">
                <div class="card-header">
                  Visits
-                   <a href="{{ route('user.doctors.visits.create')}}" class="btn btn-primary float-right">Add</a>
+                   <a href="{{ route('user.doctors.visits.create')}}" class="btn btn-outline-primary float-right">Add</a>
                </div>
                <div class="card-body">
                  @if (count(Auth::user()->doctor->visits) == 0)
@@ -43,6 +37,7 @@
                        <th>End Time</th>
                        <th>Duration</th>
                        <th>Cost</th>
+                       <th>Patient</th>
                        <th>Actions</th>
                    </thead>
                    <tbody>
@@ -53,12 +48,13 @@
                            <td>{{ $visit->end_time }}</td>
                            <td>{{ $visit->duration }}</td>
                            <td>€{{ $visit->cost }}</td>
+                           <td>{{ $visit->patient->user->name }}</td>
                            <th>
-                                 <a href="{{ route('user.doctors.visits.edit', $visit->id)}}" class="btn btn-secondary">Edit</a>
+                                 <a href="{{ route('user.doctors.visits.edit', $visit->id)}}" class="btn btn-outline-secondary">Edit</a>
                                <form style="display:inline-block" method="POST" action="{{ route('user.doctors.visits.destroy', [ 'id' => $visit->id]) }}">
                                    <input type="hidden" name="_method" value="DELETE">
                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                   <button type="submit" class="form-control btn btn-danger">Cancel</a>
+                                   <button type="submit" class="form-control btn btn-outline-danger">Cancel</a>
                                </form>
                            </th>
                        </tr>

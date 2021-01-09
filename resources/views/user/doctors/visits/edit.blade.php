@@ -42,9 +42,9 @@
                   <label for="cost">Cost</label>
                   <input type="text" class="form-control" name="cost" id="cost" value="{{ old('cost', $visit->cost) }}" />
               </div>
-              <div class="form-group">
+              <div class="form-group dropdown">
                   <label for="patient">Patient</label>
-                  <select name='patient_id'>
+                  <select class="form-control col-6" name='patient_id'>
                     @foreach ($patients as $patient)
                       <option value="{{ $patient->id }}" {{ (old('patient_id', $visit->patient->id) == $patient->id) ? "selected" : "" }}>{{ $patient->user->name }}</option>
                     @endforeach
@@ -52,7 +52,7 @@
               </div>
               <div class="form-group">
                   <label for="doctor">Doctor</label>
-                  <select name='doctor_id'>
+                  <select class="form-control col-6" name='doctor_id'>
                     @foreach ($doctors as $doctor)
                       <option value="{{ $doctor->id }}" {{ (old('doctor_id', $visit->doctor->id) == $doctor->id) ? "selected" : "" }}>{{ $doctor->user->name }}</option>
                     @endforeach

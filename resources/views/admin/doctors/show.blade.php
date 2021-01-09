@@ -14,7 +14,7 @@
                         <tbody>
                             <tr>
                               <td>Name</td>
-                              <td>{{ $doctor->user->name }}</td>
+                              <td>Dr. {{ $doctor->user->name }}</td>
                             </tr>
                             <tr>
                               <td>Address</td>
@@ -36,11 +36,30 @@
                       </table>
                     <a href="{{ route('admin.doctors.index')}}" class="btn">Back</a>
                     <a href="{{ route('admin.doctors.edit', $doctor->id)}}" class="btn btn-secondary">Edit</a>
-                    <form style="display:inline-block" method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="form-control btn btn-danger">Delete</button>
-                    </form>
+                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Delete</a>
+                    <div class="clearfix"></div>
+                    <div class="modal fade" id="delete-modal">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Doctorr</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure! this doctor may have visits</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" onclick="document.querySelector('#delete-form').submit()">Proceed</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <form method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}" id="delete-form">
+                        @csrf
+                        @method('DELETE')
                 </div>
                 <div class="card-header">
                   Visits
@@ -51,7 +70,7 @@
                   <p>There are no visits for this doctor.</p>
                 @else
                 <table class="table">
-                    <thead>
+                    <thead class="thead-dark">
                         <th>Date</th>
                         <th>Start Time</th>
                         <th>End Time</th>
@@ -66,7 +85,7 @@
                             <td>{{ date('j F, Y', strtotime($visit->date)) }}</td>
                             <td>{{ date('G:i', strtotime($visit->start_time)) }}</td>
                             <td>{{ date('G:i', strtotime($visit->end_time)) }}</td>
-                            <td>{{ date('G', strtotime($visit->duration)) }} hour's'</td>
+                            <td>{{ date('G', strtotime($visit->duration)) }} hour's</td>
                             <td>€{{ $visit->cost }}</td>
                             <td>{{ $visit->patient->user->name }}</td>
                             <th>
