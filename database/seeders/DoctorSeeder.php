@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Doctor;
 use App\Models\Role;
 use App\Models\Visit;
+use App\Models\User;
 
 class DoctorSeeder extends Seeder
 {
@@ -16,9 +17,11 @@ class DoctorSeeder extends Seeder
      */
     public function run()
     {
+      $role_doctor = Role::where('name', 'doctor')->first();
 
-      for($i = 1; $i <= 15; $i++){
-            Doctor::factory()->hasVisits(rand(2,5))->create();
+      for($i = 1; $i <= 5; $i++){
+          Doctor::factory()->hasVisits(rand(2,5))->create();
+
       }
         // $role_user = Role::where('name', 'user')->first();
         //

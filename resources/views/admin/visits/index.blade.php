@@ -17,7 +17,7 @@
                     @if (count($visits) === 0)
                     <p>There are no Visits</p>
                     @else
-                    <table id="table-visits" class="table table-light table-striped table-hover">
+                    <table id="table-visits" class="table table-hover">
                         <thead class="thead-dark">
                             <th>Date</th>
                             <th>Start Time</th>

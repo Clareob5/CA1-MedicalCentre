@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-9 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
                   <h3>Name: {{ $patient->user->name }}</h3>
@@ -76,7 +76,7 @@
                         @method('DELETE')
                 </div>
             </div>
-            
+
             <div class="card">
             <div class="card-header">
               <h2> Visits </h2>
@@ -106,12 +106,12 @@
                         <td>{{ $visit->cost }}</td>
                         <td>{{ $visit->doctor->user->name }}</td>
                         <th>
-                            <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-primary">View</a>
-                            <a href="{{ route('admin.visits.edit', $visit->id )}}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.visits.show', $visit->id )}}" class="btn btn-outline-primary">View</a>
+                            <a href="{{ route('admin.visits.edit', $visit->id )}}" class="btn btn-outline-warning">Edit</a>
                             <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $patient->id, 'rid' => $visit->id]) }}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-danger">Cancel</a>
+                                <button type="submit" class="btn btn-outline-danger">Cancel</a>
                             </form>
                         </th>
                     </tr>

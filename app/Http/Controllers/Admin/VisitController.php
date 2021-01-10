@@ -35,6 +35,7 @@ class VisitController extends Controller
    */
    public function create()
    {
+      //get all visits,doctors and patients from the database to use for the view.
        $visits = Visit::all();
        $patients = Patient::all();
        $doctors = Doctor::all();

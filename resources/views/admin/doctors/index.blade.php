@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Doctors</h2>
+                    <h4>Doctors</h4>
                     <a href="{{ route('admin.doctors.create')}}" class="btn btn-primary float-right">Add</a>
                 </div>
 
@@ -18,7 +18,7 @@
                     <p>There are no Doctors</p>
                     @else
                     <table id="table-doctors" class="table table-hover">
-                        <thead>
+                        <thead class="thead-dark">
                             <th>Name</th>
                             <th>Address</th>
                             <th>Phone</th>

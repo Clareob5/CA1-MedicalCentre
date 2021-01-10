@@ -305,6 +305,7 @@ input[type=radio],
 input[type=checkbox] {
   box-sizing: border-box;
   padding: 0;
+  margin-left: 10;
 }
 
 textarea {
@@ -3140,7 +3141,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-warning {
   color: #FC9F0A;
-  border-color: #FC9F0A; 
+  border-color: #FC9F0A;
   /* color: #ffed4a;
   border-color: #ffed4a; */
 }
@@ -10908,4 +10909,8 @@ a.text-dark:focus {
 .red{
   color: #ED0707;
   background-color: #ED0707;
+}
+
+.checkbox{
+  margin-left: 10 !important;
 }

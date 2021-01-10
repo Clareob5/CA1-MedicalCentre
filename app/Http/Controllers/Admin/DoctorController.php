@@ -141,7 +141,7 @@ class DoctorController extends Controller
    */
   public function destroy(Request $request,$id)
   {
-    $doctor = doctor::findOrFail($id); //finds the doctor where its stored in the database and deletes them
+    $doctor = Doctor::findOrFail($id); //finds the doctor where its stored in the database and deletes them
     $doctor->delete();
 
     $request->session()->flash('danger', 'Doctor Deleted Successfully'); //sends confirmation message

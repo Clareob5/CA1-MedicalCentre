@@ -19,8 +19,8 @@ class VisitSeeder extends Seeder
     public function run()
     {
       for($i = 1; $i <= 10; $i++){
-        $visit = Visit::factory()->forDoctor()->create();
-        $visit = Visit::factory()->forPatient()->create();
+        $visitdoc = Visit::factory()->forDoctor()->create();
+        $visitpat = Visit::factory()->forPatient()->create();
 
     }
     }

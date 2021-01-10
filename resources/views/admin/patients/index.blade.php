@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                  Patients
+                  <h4>Patients</h4>
                   <a href="{{ route('admin.patients.create')}}" class="btn btn-primary float-right">Add</a>
                 </div>
 
@@ -18,7 +18,7 @@
                       <p>There are no Patients</p>
                     @else
                       <table id="table-patients" class="table table-hover">
-                        <thead>
+                        <thead class="thead-dark">
                           <th>Name</th>
                           <th>Address</th>
                           <th>Phone</th>
@@ -40,9 +40,15 @@
                             @endif
                               <td>{{ $patient->policy_num }}</td>
                               <td>
-                                <a href="{{ route('admin.patients.show', $patient->id )}}" class="btn btn-primary">View</a>
-                                <a href="{{ route('admin.patients.edit', $patient->id )}}" class="btn btn-warning">Edit</a>
-                                <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal">Delete</a>
+                                <a href="{{ route('admin.patients.show', $patient->id )}}" class="btn btn-outline-primary">View</a>
+                                <a href="{{ route('admin.patients.edit', $patient->id )}}" class="btn btn-outline-warning">Edit</a>
+                                <form style="display:inline-block" method="POST" action="{{ route('admin.patients.destroy', $patient->id) }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
+                                </form>
+                                {{-- Was used for confirming deletes --}}
+                                {{-- <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal">Delete</a>
                                 <div class="clearfix"></div>
                                 <div class="modal fade" id="delete-modal">
                                     <div class="modal-dialog" role="document">
@@ -65,7 +71,7 @@
                                 </div>
                                 <form method="POST" action="{{ route('admin.patients.destroy', $patient->id) }}" id="delete-form">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('DELETE') --}}
                               </td>
                             </tr>
                           @endforeach

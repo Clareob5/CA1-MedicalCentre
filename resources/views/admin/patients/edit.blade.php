@@ -6,7 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
      <div class="card">
        <div class="card-header">
-         Edit Patient
+         <h2>Edit Patient</h2>
        </div>
 
        <div class="card-body">
@@ -41,8 +41,9 @@
                 <div class="form-group">
                     <label for="has_insurance">Check box if you have insurance</label>
                     <input type="hidden" name="has_insurance" value="0"/>
-                    <input type="checkbox" class="form-control checkbox" name="has_insurance" id="has_insurance" value="1" {{ old('has_insurance', $patient->has_insurance) ? 'checked="checked"' : '' , }} />
+                    <input type="checkbox" class="form-input checkbox" name="has_insurance" id="has_insurance" value="1" {{ old('has_insurance', $patient->has_insurance) ? 'checked="checked"' : '' , }} />
                 </div>
+                  <h5><u>Dont fill in the two following fields if you dont have insurance</u></h5>
                 <div class="form-group">
                     <label for="insurance_company">Insurance Company</label>
                     <select class="form-control" name='med_insurance_id'>

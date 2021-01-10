@@ -64,11 +64,11 @@ class UserSeeder extends Seeder
       $patient->med_insurance_id = 1;
       $patient->save();
 
-    //   for($i = 1; $i <= 10; $i++){
-    //     $user = User::factory()->hasDoctor()->create();
-    //     $user->roles()->attach($role_doctor);
-    //
-    // }
+      for($i = 1; $i <= 10; $i++){
+        $user = User::factory()->hasDoctor()->create();
+        $user->roles()->attach($role_doctor);
+
+    }
 
     for($i = 1; $i <= 10; $i++){
       $user = User::factory()->hasPatient()->create();

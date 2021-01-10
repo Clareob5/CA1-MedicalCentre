@@ -6,7 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
      <div class="card">
        <div class="card-header">
-         Add New Patient
+         <h2>Add New Patient</h2>
        </div>
 
        <div class="card-body">
@@ -37,12 +37,12 @@
                     <label for="email">Email</label>
                     <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}" />
                 </div>
-                <div class="form-check margin-top">
-                    <label class="form-check-label" for="has_insurance">Check box if you have insurance</label>
+                <div class="form control margin-top">
+                    <label class="form-label" for="has_insurance">Do you have insurance?</label>
                     <input type="hidden" name="has_insurance" value="0"/>
-                    <input type="checkbox" class="form-check-input checkbox" name="has_insurance" id="has_insurance" value="1" {{ old('has_insurance') ? 'checked="checked"' : '' }} />
+                    <input type="checkbox" class="form-input checkbox" name="has_insurance" id="has_insurance" value="1" {{ old('has_insurance') ? 'checked="checked"' : '' }} />
                 </div>
-                <div>Dont fill in the two following fields if you dont have insurance</div>
+                <h5><u>Dont fill in the two following fields if you dont have insurance</u></h5>
                 <div class="form-group">
                     <label for="insurance_company">Insurance Company</label>
                     <select class="form-control" name='med_insurance_id'>

@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
-                  Visit Information
+                  <h3>Visit Information</h3>
                 </div>
 
                 <div class="card-body">
@@ -42,12 +42,12 @@
                             </tr>
                         </tbody>
                       </table>
-                    <a href="{{ route('admin.visits.index')}}" class="btn">Back</a>
-                    <a href="{{ route('admin.visits.edit', $visit->id)}}" class="btn btn-secondary">Edit</a>
+                    <a href="{{ route('admin.visits.index')}}" class="btn btn-outline-dark">Back</a>
+                    <a href="{{ route('admin.visits.edit', $visit->id)}}" class="btn btn-outline-secondary">Edit</a>
                     <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', $visit->id) }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="form-control btn btn-danger">Delete</button>
+                        <button type="submit" class="form-control btn btn-outline-danger">Delete</button>
                     </form>
                 </div>
             </div>

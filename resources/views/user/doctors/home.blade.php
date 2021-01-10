@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <h2 class="car-header">{{ __('Dashboard') }}</h2>
+                <h2 class="card-header">{{ __('Dashboard') }}</h2>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-header">
                     Visits
-                    <a href="{{ route('user.doctors.visits.create')}}" class="btn btn-outline-primary float-right">Add</a>
+                    <a href="{{ route('user.doctors.visits.create', Auth::user()->doctor->id)}}" class="btn btn-outline-primary float-right">Add</a>
                 </div>
                 <div class="card-body">
                     @if (count(Auth::user()->doctor->visits) == 0)

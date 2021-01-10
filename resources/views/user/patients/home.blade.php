@@ -9,31 +9,41 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     {{ __('You are logged in as a patient!') }}
 
                     </br>
-                    Hi {{ Auth::user()->name }}
                     </br>
-                    Email: {{ Auth::user()->email }}
-                    </br>
-                    Policy Number: {{ Auth::user()->patient->policy_num }}
-                    </br>
-                    Phone: {{ Auth::user()->phone }}
-                    </br>
-                 </div>
-               </div>
-                 <div class="card">
-                    <div class="card-header">
-                      Visits
-                    </div>
-                    <div class="card-body">
-                      @if (count(Auth::user()->patient->visits) == 0)
-                      <p>There are no visits for this patient.</p>
+                    <p>Hi {{ Auth::user()->name }}</p>
+                    <p>Email: {{ Auth::user()->email }}</p>
+                    <p>Phone: {{ Auth::user()->phone }}</p>
+                    <p>Address: {{ Auth::user()->address }}</p>
+                    @if(Auth::user()->patient->med_insurance_id === NULL)
+
+                        @else
+                        <p>Insurance Company: {{ Auth::user()->patient->med_insurance->insurance_company }}</p>
+                        @endif
+
+                        @if(Auth::user()->patient->med_insurance_id === NULL)
+
+                            @else
+                            <p>Policy Number: {{ Auth::user()->patient->policy_num }}</p>
+                            @endif
+
+                            </br>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Visits
+                </div>
+                <div class="card-body">
+                    @if (count(Auth::user()->patient->visits) == 0)
+                    <p>There are no visits for this patient.</p>
                     @else
                     <table class="table">
                         <thead>
@@ -66,10 +76,10 @@
                         </tbody>
                     </table>
                     @endif
-                  </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

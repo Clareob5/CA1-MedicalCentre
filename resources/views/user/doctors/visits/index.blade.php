@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                  Visits
+                  <h2>Visits</h2>
                   <a href="{{ route('admin.visits.create')}}" class="btn btn-primary float-right">Add</a>
                 </div>
 

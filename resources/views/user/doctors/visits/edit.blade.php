@@ -6,7 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
      <div class="card">
        <div class="card-header">
-         Edit Visit
+         <h2>Edit Visit</h2>
        </div>
 
        <div class="card-body">

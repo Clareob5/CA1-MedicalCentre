@@ -15,9 +15,7 @@
                     @endif
 
                     {{ __('You are logged in as an admin!') }}
-                </div>
-                <div class="card-header">{{ __('Users pending approval') }}</div>
-          
+                </div>        
         </div>
     </div>
 </div>
