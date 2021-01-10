@@ -7,6 +7,32 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## How to Install the Project
+* Download a zip of the project, unzip it into your LaravelProjects folder or wherever you run your homestead environment.
+* Go into your 'Homestead.yaml' file and add the following 
+`- map: CobMedical.center
+      to: /home/vagrant/WAF/MyLaravelProjects/CobMedicalCentre/public` 
+ * In the database part of the yaml file add `- cob_medicalcenter`
+ * Access your hosts file by running notepad as admin, click on open file and navigate to 
+ `C:\Users\clare\WAF\MyLaravelProjects\CobMedicalCentre\app\Http\Controllers\Admin`
+ * While in the hosts file add the url of your site there 
+    For example: 127.0.0.1        CobMedical.centre
+ * Copy the 'example.env' and name it '.env'
+ * Open the .env file and set the DB_DATABASE to the database you created in the Homestead.yaml file and set the username and password to the necesssary credentials.
+ * Then refresh the Homestead environment with `vagrant reload --provision`.
+ Go into the Homestead environment using `vagrant up` and `vagrant ssh`.
+ Once in the Homestead environment, cd into your application folder and run these following commands:
+    * `composer install`
+    * `npm install`
+    * `php artisan key:generate`
+ After that migrate and seed the database using `php artisan migrate --seed`
+ Once that done initialise, add and commit to Git
+    * `git init`     
+    * `git add .`
+    * `git commit -am 'Initial commit`
+ 
+ You may need to create the db for cob_medicalcenter manually in phpMyAdmin if it doesnt automatically generate
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
