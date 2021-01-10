@@ -22,7 +22,8 @@ class DoctorController extends Controller
    */
   public function index()
   {
-    $doctors = Doctor::all();
+    $doctors = Doctor::all(); //querying the database by using the model for doctors to retreive all doctors
+    //returning the index for doctors with a variable to access all doctors
     return view('admin.doctors.index', [
       'doctors' => $doctors
     ]);
@@ -37,22 +38,22 @@ class DoctorController extends Controller
    public function create()
    {
        $doctors = Doctor::all();
-       $users = User::all();
        return view('admin.doctors.create', [
          'doctors' => $doctors,
-         'users' => $users
        ]);
    }
 
-  public function store(Request $request)
+  public function store(Request $request) //stores the created doctor into the database
   {
+    //below are validation rules for each of the separate inputs
     $request->validate([
       'name' => 'required|max:191',
       'address' => 'required|max:191',
-      'phone' => 'required|max:15',
+      'phone' => 'required|max:11',
       'email' => 'required|email',
       'date_started' => 'required|date',
     ]);
+    //gives each user attribute the value from the input field
     $user = new User();
     $user->name = $request->input('name');
     $user->address = $request->input('address');
@@ -65,10 +66,10 @@ class DoctorController extends Controller
     $doctor->date_started = $request->input('date_started');
     $doctor->user_id = $user->id;
     $doctor->save();
-
+    //sends a flash message to let you know the doctor was added successfully
     $request->session()->flash('success', 'Doctor Added Successfully');
 
-    return redirect()->route('admin.doctors.index');
+    return redirect()->route('admin.doctors.index'); //redirects back to index page once form is submitted
   }
 
   /**
@@ -77,9 +78,10 @@ class DoctorController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show($id) //passes id from the selected doctor
   {
-      $doctor = Doctor::findOrFail($id);
+      $doctor = Doctor::findOrFail($id); //finds that doctor in the database by querying through the model
+      //returns the view with chosen doctor
       return view('admin.doctors.show', [
         'doctor' => $doctor
       ]);
@@ -94,7 +96,6 @@ class DoctorController extends Controller
   public function edit($id)
   {
     $doctor = Doctor::findOrFail($id);
-
     return view('admin.doctors.edit', [
       'doctor' => $doctor
     ]);
@@ -107,8 +108,9 @@ class DoctorController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, $id) //this updates the doctors info after it has been edited
   {
+    //
     $request->validate([
       'name' => 'required|max:191',
       'address' => 'required|max:191',
@@ -117,6 +119,7 @@ class DoctorController extends Controller
       'date_started' => 'required|date',
     ]);
 
+    //this findorfail instead of new user and doctor because its updating an existing field
     $doctor = Doctor::findOrFail($id);
     $doctor->user->name = $request->input('name');
     $doctor->user->address = $request->input('address');
@@ -125,7 +128,7 @@ class DoctorController extends Controller
     $doctor->date_started = $request->input('date_started');
     $doctor->save();
 
-    $request->session()->flash('info', 'Doctor Edited Successfully');
+    $request->session()->flash('info', 'Doctor Edited Successfully'); //sends confirmation message
 
     return redirect()->route('admin.doctors.index');
   }
@@ -138,10 +141,10 @@ class DoctorController extends Controller
    */
   public function destroy(Request $request,$id)
   {
-    $doctor = doctor::findOrFail($id);
+    $doctor = doctor::findOrFail($id); //finds the doctor where its stored in the database and deletes them
     $doctor->delete();
 
-    $request->session()->flash('danger', 'Doctor Deleted Successfully');
+    $request->session()->flash('danger', 'Doctor Deleted Successfully'); //sends confirmation message
 
     return redirect()->route('admin.doctors.index');
   }

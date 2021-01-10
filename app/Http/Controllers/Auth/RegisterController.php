@@ -68,12 +68,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      // $user = User::create([
-      //     'name' => ,
-      //     'email' => ,
-      //     'password' => Hash::make(),
-      // ]);
 
+      //this cretaes a new user and adds them to the database
       $user = new User();
       $user->name = $data['name'];
       $user->address = $data['address'];
@@ -82,15 +78,13 @@ class RegisterController extends Controller
       $user->password = Hash::make($data['password']);
       $user->save();
 
-      $user->roles()->attach(Role::where('name','user')->first());
-      //
-      // $patient = new Patient();
-      // $patient->has_insurance = true;
-      // $patient->policy_num = '235463';
-      // $patient->user_id = $user->id;
-      // $patient->med_insurance_id = 2;
-      // $patient->save();
+      $user->roles()->attach(Role::where('name','patient')->first());//using  where query to attach the patietn role to the user
+      //patient automatically registered with no insurance, this can be changed by the admin only
+      $patient = new Patient();
+      $patient->has_insurance = false;
+      $patient->user_id = $user->id;
+      $patient->save();
 
-      return $user;
+      return $user; //returns user home page 
     }
 }

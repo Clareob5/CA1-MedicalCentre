@@ -14,8 +14,8 @@ class PatientController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
-      $this->middleware('role:admin');
+      $this->middleware('auth'); //user must be logged in to access this page
+      $this->middleware('role:admin'); //this middleware will only allow the admin to access this page
   }
   /**
    * Display a listing of the resource.
@@ -24,9 +24,12 @@ class PatientController extends Controller
    */
   public function index()
   {
+    //queries database for all the patients and returns the index view
     $patients = Patient::all();
+    $med_insurances = MedInsurance::all();
     return view('admin.patients.index', [
       'patients' => $patients,
+      'med_insurances' => $med_insurances
     ]);
   }
 
@@ -37,6 +40,7 @@ class PatientController extends Controller
    */
    public function create()
    {
+       //gets all medical insurances for the create along with the patients
        $patients = Patient::all();
        $med_insurances = MedInsurance::all();
        return view('admin.patients.create', [
@@ -45,18 +49,19 @@ class PatientController extends Controller
        ]);
    }
 
-  public function store(Request $request)
+  public function store(Request $request) //passes in the request parameter
   {
+    //first the items entered must be validated with appropriate validation rules
     $request->validate([
       'name' => 'required|max:191',
       'address' => 'required|max:191',
-      'phone' => 'required|max:11',
+      'phone' => 'required|max:15',
       'email' => 'required|email',
       'has_insurance' => 'boolean',
-      'med_insurance_id' => 'nullable',
+      'med_insurance_id' => 'nullable', //nullable because patient may not have insurance
       'policy_num' => 'min:1|max:15|nullable'
     ]);
-    $user = new User();
+    $user = new User(); //creates new user first
     $user->name = $request->input('name');
     $user->address = $request->input('address');
     $user->phone = $request->input('phone');
@@ -64,16 +69,17 @@ class PatientController extends Controller
     $user->password = Hash::make('secret');
     $user->save();
 
-    $patient = new Patient();
+    $patient = new Patient(); //cretaes new patient with the inputed values
     $patient->has_insurance = $request->input('has_insurance');
     $patient->policy_num = $request->input('policy_num');
     $patient->user_id = $user->id;
     $patient->med_insurance_id = $request->input('med_insurance_id');
     $patient->save();
 
+    //sends a message to be displayed to the user
     $request->session()->flash('success', 'Patient Added Successfully');
 
-    return redirect()->route('admin.patients.index');
+    return redirect()->route('admin.patients.index'); //redirects admin to index page
   }
 
   /**
@@ -82,9 +88,9 @@ class PatientController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show($id) //pass id of patient you want to view
   {
-      $patient = Patient::findOrFail($id);
+      $patient = Patient::findOrFail($id); //retrieves the patient from the database
       $doctor = Doctor::all();
       return view('admin.patients.show', [
         'patient' => $patient,
@@ -120,7 +126,7 @@ class PatientController extends Controller
     $request->validate([
       'name' => 'required|max:191',
       'address' => 'required|max:191',
-      'phone' => 'required|max:11',
+      'phone' => 'required|max:15',
       'email' => 'required|email',
       'has_insurance' => 'boolean',
       'med_insurance_id' => 'nullable',

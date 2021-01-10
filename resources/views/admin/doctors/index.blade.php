@@ -36,7 +36,7 @@
                                 <td>
                                     <a href="{{ route('admin.doctors.show', $doctor->id )}}" class="btn btn-outline-primary">View</a>
                                     <a href="{{ route('admin.doctors.edit', $doctor->id )}}" class="btn btn-outline-warning">Edit</a>
-                                    <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal">Delete</a>
+                                    <a href="{{ route('admin.doctors.destroy', $doctor->id) }}" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal">Delete</a>
                                     <div class="clearfix"></div>
                                     <div class="modal fade" id="delete-modal">
                                         <div class="modal-dialog" role="document">
@@ -51,15 +51,21 @@
                                                 <p>Are you sure! If this doctor has visits they will also be deleted</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" onclick="document.querySelector('#delete-form').submit()">Proceed</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                              <form style="display:inline-block" method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}">
+                                                  <input type="hidden" name="_method" value="DELETE">
+                                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                  <button type="submit" class="btn btn-outline-danger">Proceed</button>
+                                                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                              </form>
+                                                {{-- <button type="button" class="btn btn-danger" onclick="document.querySelector('#delete-form').submit()">Proceed</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button> --}}
                                             </div>
                                         </div>
                                         </div>
                                     </div>
-                                    <form method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}" id="delete-form">
-                                        @csrf
-                                        @method('DELETE')
+                                    {{-- <form method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}" id="delete-form">
+                                    @csrf
+                                    @method('DELETE') --}}
                                 </td>
                             </tr>
 

@@ -25,6 +25,7 @@
                           <th>Email</th>
                           <th>Insurance Company</th>
                           <th>Policy Number</th>
+                          <th>Actions</th>
                         <tbody>
                           @foreach ($patients as $patient)
                             <tr data-id="{{ $patient->id }}">
@@ -32,7 +33,11 @@
                               <td>{{ $patient->user->address }}</td>
                               <td>{{ $patient->user->phone }}</td>
                               <td>{{ $patient->user->email }}</td>
+                          @if($patient->med_insurance_id === NULL)
+                            <td>No Insurance</td>
+                           @else
                               <td>{{ $patient->med_insurance->insurance_company }}</td>
+                            @endif
                               <td>{{ $patient->policy_num }}</td>
                               <td>
                                 <a href="{{ route('admin.patients.show', $patient->id )}}" class="btn btn-primary">View</a>

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Doctor;
 use App\Models\Role;
+use App\Models\Visit;
 
 class DoctorSeeder extends Seeder
 {
@@ -15,6 +16,10 @@ class DoctorSeeder extends Seeder
      */
     public function run()
     {
+
+      for($i = 1; $i <= 15; $i++){
+            Doctor::factory()->hasVisits(rand(2,5))->create();
+      }
         // $role_user = Role::where('name', 'user')->first();
         //
         // foreach($role_user->users as $user) {
@@ -24,7 +29,7 @@ class DoctorSeeder extends Seeder
         //   $doctor->save();
         //   //$user->roles()->attach($role_doctor);
         // }
-    }
+
 
    //  private function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
    // {
@@ -35,4 +40,5 @@ class DoctorSeeder extends Seeder
    //   }
    //   return implode('', $pieces);
    // }
+}
 }

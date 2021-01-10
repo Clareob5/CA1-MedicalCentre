@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-9 col-md-offset-2">
             <div class="card">
                 <div class="card-header">
-                  Name: {{ $patient->user->name }}
+                  <h3>Name: {{ $patient->user->name }}</h3>
                 </div>
 
                 <div class="card-body">
@@ -30,16 +30,26 @@
                             </tr>
                             <tr>
                               <td>Insurance Company</td>
-                              <td>{{ $patient->med_insurance->insurance_company}}</td>
+                              {{-- this if statment is for displaying a value when the patient does not have insurance --}}
+                              @if($patient->med_insurance_id === NULL)
+                                <td>No Insurance</td>
+                               @else
+                                  <td>{{ $patient->med_insurance->insurance_company }}</td>
+                                @endif
                             </tr>
                             <tr>
                               <td>Policy Number</td>
+                              @if($patient->med_insurance_id === NULL)
+                                <td>Not Applicable</td>
+                               @else
                               <td>{{ $patient->policy_num }}</td>
+                            @endif
                             </tr>
                         </tbody>
                       </table>
-                    <a href="{{ route('admin.patients.index')}}" class="btn">Back</a>
-                    <a href="{{ route('admin.patients.edit', $patient->id)}}" class="btn btn-secondary">Edit</a>
+                    <a href="{{ route('admin.patients.index')}}" class="btn btn-outline-dark">Back</a>
+                    <a href="{{ route('admin.patients.edit', $patient->id)}}" class="btn btn-outline-secondary">Edit</a>
+                    {{-- Delete modal displays a message to confirm that you want to delete the patient --}}
                     <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete-modal">Delete</a>
                     <div class="clearfix"></div>
                     <div class="modal fade" id="delete-modal">
@@ -66,8 +76,10 @@
                         @method('DELETE')
                 </div>
             </div>
+            
+            <div class="card">
             <div class="card-header">
-              Visits
+              <h2> Visits </h2>
               <a href="{{ route('admin.visits.create', $patient->id)}}" class="btn btn-primary float-right">Add</a>
             </div>
             <div class="card-body">
@@ -99,7 +111,7 @@
                             <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', [ 'id' => $patient->id, 'rid' => $visit->id]) }}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="form-control btn btn-danger">Cancel</a>
+                                <button type="submit" class="btn btn-danger">Cancel</a>
                             </form>
                         </th>
                     </tr>
@@ -108,6 +120,7 @@
             </table>
             @endif
           </div>
+        </div>
         </div>
     </div>
 </div>

@@ -17,8 +17,8 @@ class HomeController extends Controller
    */
   public function __construct()
   {
-      $this->middleware('auth');
-      $this->middleware('role:admin');
+      $this->middleware('auth'); //user must be logged in to access this page
+      $this->middleware('role:admin'); //this middleware will only allow the admin to access this page
   }
 
   /**
@@ -28,11 +28,8 @@ class HomeController extends Controller
    */
    public function index()
  {
-
-   $users = User::all();
-   return view('admin.home', [
-     'users' => $users,
-   ]);
+    //shows admin home view to the admin
+      return view('admin.home');
 
  }
 }
