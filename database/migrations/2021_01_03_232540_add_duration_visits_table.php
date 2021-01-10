@@ -12,7 +12,7 @@ class AddDurationVisitsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   //altering the visits table add certain time types
         Schema::table('visits', function (Blueprint $table) {
           $table->dropColumn('time');
           $table->time('start_time');
@@ -27,7 +27,7 @@ class AddDurationVisitsTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   //drops all the columns made above and adds back the dropped column 'time'
         Schema::table('visits', function (Blueprint $table) {
           $table->dropColumn('start_time');
           $table->dropColumn('end_time');

@@ -12,7 +12,8 @@ class AddDeletedAtToVisitsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { //adding deleted at column for using solf softDeletes
+      //this is used so you can restore an object rather than it been gone forever.
         Schema::table('visits', function (Blueprint $table) {
             $table->softDeletes();
         });

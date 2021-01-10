@@ -14,9 +14,10 @@ class AddMedInsuranceIdToPatientsTable extends Migration
     public function up()
     {
         Schema::table('patients', function (Blueprint $table) {
-            $table->dropColumn('insurance_company');
-            $table->unsignedBigInteger('med_insurance_id');
+            $table->dropColumn('insurance_company'); //drops column from patients tables
+            $table->unsignedBigInteger('med_insurance_id')->nullable();//add a new id that is nullable to the patients table
 
+            //sets a foreign key constraint that refernces the id of the med insurance table
             $table->foreign('med_insurance_id')->references('id')->on('med_insurances')->onUpdate('cascade')->onDelete('restrict');
 
         });
@@ -29,6 +30,7 @@ class AddMedInsuranceIdToPatientsTable extends Migration
      */
     public function down()
     {
+      //the down method is used to reverse the things donein the up method as shown below
         Schema::table('patients', function (Blueprint $table) {
               $table->dropForeign(['med_insurance_id']);
               $table->dropColumn('med_insurance_id');

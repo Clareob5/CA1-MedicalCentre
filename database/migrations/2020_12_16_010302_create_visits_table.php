@@ -18,10 +18,11 @@ class CreateVisitsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->decimal('cost',6,2);
-            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('patient_id'); //creating the foreign keys as unsigned
             $table->unsignedBigInteger('doctor_id');
             $table->timestamps();
 
+            //defining the foreign key constraints and setting the delete to cascade
             $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('doctor_id')->references('id')->on('doctors')->onUpdate('cascade')->onDelete('cascade');
         });
