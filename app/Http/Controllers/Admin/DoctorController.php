@@ -119,12 +119,15 @@ class DoctorController extends Controller
       'date_started' => 'required|date',
     ]);
 
-    //this findorfail instead of new user and doctor because its updating an existing field
     $doctor = Doctor::findOrFail($id);
-    $doctor->user->name = $request->input('name');
-    $doctor->user->address = $request->input('address');
-    $doctor->user->phone = $request->input('phone');
-    $doctor->user->email = $request->input('email');
+    $user = User::findOrFail($doctor->user->id);
+    $user->name = $request->input('name');
+    $user->address = $request->input('address');
+    $user->phone = $request->input('phone');
+    $user->email = $request->input('email');
+    $user->save();
+    //this findorfail instead of new user and doctor because its updating an existing field
+    //$doctor = Doctor::findOrFail($id);
     $doctor->date_started = $request->input('date_started');
     $doctor->save();
 

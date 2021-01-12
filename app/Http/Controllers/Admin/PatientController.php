@@ -134,10 +134,13 @@ class PatientController extends Controller
       ]);
 
     $patient = Patient::findOrFail($id);
-    $patient->user->name = $request->input('name');
-    $patient->user->address = $request->input('address');
-    $patient->user->phone = $request->input('phone');
-    $patient->user->email = $request->input('email');
+    $user = User::findOrFail($patient->user->id);
+    $user->name = $request->input('name');
+    $user->address = $request->input('address');
+    $user->phone = $request->input('phone');
+    $user->email = $request->input('email');
+    $user->save();
+
     $patient->has_insurance = $request->input('has_insurance');
     $patient->med_insurance_id = $request->input('med_insurance_id');
     $patient->policy_num = $request->input('policy_num');
