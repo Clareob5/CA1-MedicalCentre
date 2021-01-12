@@ -24,7 +24,6 @@
  Once in the Homestead environment, cd into your application folder and run these following commands:
     * `composer install`
     * `npm install`
-    * `php artisan key:generate`
  After that migrate and seed the database using `php artisan migrate --seed`
  Once that done initialise, add and commit to Git
     * `git init`     
